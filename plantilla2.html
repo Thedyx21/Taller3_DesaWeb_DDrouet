@@ -8,41 +8,30 @@
   </head>
   <body class="bg-dark text-white">
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-  <div class="container-fluid">
-    <!-- Logo + Nombre -->
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="img/spidermanlogo.jpg" alt="Logo Spider-Man" width="40" height="40" class="d-inline-block align-text-top me-2">
-      Spider-Man
-    </a>
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="img/spidermanlogo.jpg" alt="Logo Spider-Man" width="40" height="40" class="d-inline-block align-text-top me-2">
+          Spider-Man
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tarjetas">Tarjetas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#registroForm">Formulario</a></li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar">
+            <button class="btn btn-outline-light" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-    <!-- Botón para colapsar en pantallas pequeñas -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Enlaces -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Películas</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Cómics</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Multiverso</a></li>
-      </ul>
-
-      <!-- Buscador -->
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar">
-        <button class="btn btn-outline-light" type="submit">Buscar</button>
-      </form>
-    </div>
-  </div>
-</nav>
-
-
-    <!-- Carrusel -->
-    <div class="container my-5">
+    <div id="inicio" class="container my-5">
       <div id="spidermanCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner rounded">
           <div class="carousel-item active">
@@ -66,9 +55,8 @@
       </div>
     </div>
 
-    <!-- Cartas informativas -->
-    <div class="container mb-5">
-      <div class="row g-4">
+    <div id="tarjetas" class="container mb-5">
+     <div class="row g-4">
         <div class="col-md-4">
           <div class="card bg-secondary text-white h-100">
             <img src="img/spiderman4.jpg" class="card-img-top" alt="Origen">
@@ -99,11 +87,91 @@
       </div>
     </div>
 
-    <!-- Footer -->
+
+    <div class="container mb-5">
+      <h3 class="text-center mb-4">Registro de Usuarios</h3>
+      <form id="registroForm">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="nombre" class="form-label">Nombre completo</label>
+            <input type="text" class="form-control" id="nombre" required>
+          </div>
+          <div class="col-md-6">
+            <label for="universo" class="form-label">Universo</label>
+            <select class="form-select" id="universo" required>
+              <option selected disabled>Selecciona uno</option>
+              <option>UCM</option>
+              <option>Marvel Comics</option>
+              <option>Spider-Verse</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="fecha" class="form-label">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="fecha" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">¿Eres fan de Spider-Man?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="fan" id="fanSi" value="Sí" checked>
+              <label class="form-check-label" for="fanSi">Sí</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="fan" id="fanNo" value="No">
+              <label class="form-check-label" for="fanNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mb-5">
+      <h4 class="mb-3">Usuarios Registrados</h4>
+      <table class="table table-bordered table-striped table-dark" id="tablaUsuarios">
+        <thead class="table-danger text-dark">
+          <tr>
+            <th>Nombre</th>
+            <th>Universo</th>
+            <th>Fecha de nacimiento</th>
+            <th>Fan de Spider-Man</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
     <footer class="bg-danger text-center text-white py-3">
       <p class="mb-0">© 2025 Spider-Man Fan Page</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.getElementById("registroForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById("nombre").value;
+        const universo = document.getElementById("universo").value;
+        const fecha = document.getElementById("fecha").value;
+        const fan = document.querySelector('input[name="fan"]:checked').value;
+
+        const tabla = document.getElementById("tablaUsuarios").getElementsByTagName("tbody")[0];
+        const fila = tabla.insertRow();
+        fila.innerHTML = `
+          <td>${nombre}</td>
+          <td>${universo}</td>
+          <td>${fecha}</td>
+          <td>${fan}</td>
+        `;
+
+        this.reset();
+      });
+    </script>
   </body>
 </html>
